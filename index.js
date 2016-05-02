@@ -60,13 +60,18 @@ module.exports = {
             },
             function (callback) {
                 var ruleArn = (aliasArn) ? aliasArn : arn;
-                setRule(config, ruleArn, iot, function (err, r) {
-                    if (err) {
-                        return callback(err, null);
-                    } else {
-                        callback();
-                    }
-                })
+                if (config.iot) {
+                    setRule(config, ruleArn, iot, function (err, r) {
+                        if (err) {
+                            return callback(err, null);
+                        } else {
+                            callback();
+                        }
+                    })
+                } else {
+                    callback()
+                }
+
             }
         ], function (err, r) {
             if (err) {
