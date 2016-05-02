@@ -18,7 +18,12 @@ module.exports = {
     role: '',
     functionName: '',
     timeout: 10,
-    memorySize: 128
+    memorySize: 128/*,
+     eventSource: {
+     EventSourceArn: <event source such as kinesis ARN>,
+     BatchSize: 200,
+     StartingPosition: "TRIM_HORIZON"
+     }*/
 };
 
 

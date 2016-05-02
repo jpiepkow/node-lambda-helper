@@ -33,6 +33,7 @@ module.exports = {
                 })
             },
             function (callback) {
+                if(config.version === 'current') {
                 getWorkerInfo(config, lambda, function (err, r) {
                     if (err) {
                         return callback('could not get current version', null);
@@ -43,8 +44,12 @@ module.exports = {
                         callback()
                     }
                 });
+                } else {
+                    callback()
+                }
             },
             function (callback) {
+                config.version = (config.version === 'first') ? '$LATEST': config.version;
                 if (config.alias) {
                     setAlias(config, lambda, function (err, r) {
                         if (err) {
@@ -75,7 +80,7 @@ module.exports = {
             }
         ], function (err, r) {
             if (err) {
-                throw new Error(err);
+                throw new Error(err.toString());
             } else {
                 callback(null, {worked: true})
             }
