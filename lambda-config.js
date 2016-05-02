@@ -1,9 +1,8 @@
-var pack = require('./package.json');
 module.exports = {
     profile: '',
     iot: {
         ruleName: '',
-        sql: "SELECT * FROM '#' WHERE type = 'tester'",
+        sql: "",
         overWrite:true ,
         ruleDisabled:true,
         description:''
